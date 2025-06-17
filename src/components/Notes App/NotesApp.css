@@ -1,0 +1,94 @@
+/* NotesApp.css */
+.main-heading{
+  text-align: center;
+}
+.notes-app {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+   background: linear-gradient(135deg, #ffe0c3, #ffc3e0);
+
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.note-card {
+ background: linear-gradient(135deg, #fdfbfb, #ebedee);
+
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.notes-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.notes-input input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.notes-input button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.notes-input button:hover {
+  background-color: #0056b3;
+}
+
+.notes-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+
+.note-card strong {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.note-card p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.note-card button {
+  margin-right: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.note-card button:hover {
+  opacity: 0.85;
+}
+
+.note-card button:nth-child(1) {
+  background: transparent;
+  color: red;
+}
+
+.note-card button:nth-child(2) {
+  background: #f0f0f0;
+}
+
+.note-card button:nth-child(3) {
+  background: #ff4d4d;
+  color: white;
+}

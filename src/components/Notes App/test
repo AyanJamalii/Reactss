@@ -1,0 +1,208 @@
+import React, { useEffect, useState } from 'react';
+import NotesInput from './NotesInput';
+import NotesList from './NotesList';
+import './NotesApp.css';
+
+const NotesApp = () => {
+  const [allNotes, setAllNotes] = useState([]);
+  const [notesTitle, setNotesTitle] = useState('');
+  const [notesContent, setNotesContent] = useState('');
+  const [isEditing, setIsEditing] = useState(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('savedNotes');
+    if (saved && saved !== 'undefined') {
+      try {
+        setAllNotes(JSON.parse(saved));
+      } catch (e) {
+        console.error('Error occurred, failed to parse saved notes');
+        setAllNotes([]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('savedNotes', JSON.stringify(allNotes));
+  }, [allNotes]);
+
+  function addNotes() {
+    if (notesTitle.trim() === '' || notesContent.trim() === '') {
+      alert('Cannot add empty notes.');
+      return;
+    }
+
+    const newNote = {
+      id: Date.now(),
+      title: notesTitle,
+      content: notesContent,
+      liked: false
+    };
+
+    setAllNotes([...allNotes, newNote]);
+    setNotesTitle('');
+    setNotesContent('');
+  }
+
+  function deleteNote(index) {
+    const updatedNotes = allNotes.filter((_, i) => i !== index);
+    setAllNotes(updatedNotes);
+  }
+
+  function handleLikedNotes(index) {
+    const updatedNotes = allNotes.map((note, i) => {
+      if (i === index) {
+        return { ...note, liked: !note.liked };
+      }
+      return note;
+    });
+    setAllNotes(updatedNotes);
+  }
+
+  function startEditing(note) {
+    setIsEditing(note.id);
+    setNotesTitle(note.title);
+    setNotesContent(note.content);
+  }
+
+  function saveEditedNote() {
+    const updatedNotes = allNotes.map((note) => {
+      if (note.id === isEditing) {
+        return { ...note, title: notesTitle, content: notesContent };
+      }
+      return note;
+    });
+    setAllNotes(updatedNotes);
+    setNotesTitle('');
+    setNotesContent('');
+    setIsEditing(null);
+  }
+
+  function cancelEdit() {
+    setNotesTitle('');
+    setNotesContent('');
+    setIsEditing(null);
+  }
+
+  return (
+    <div className="notes-app">
+      <h1 className='main-heading'>Personal Notes</h1>
+      <NotesInput
+        notesTitle={notesTitle}
+        setNotesTitle={setNotesTitle}
+        notesContent={notesContent}
+        setNotesContent={setNotesContent}
+        addNotes={addNotes}
+        isEditing={isEditing}
+        saveEditedNote={saveEditedNote}
+        cancelEdit={cancelEdit}
+      />
+
+      <ul>
+        <h1>Your Notes:</h1>
+        <NotesList
+          allNotes={allNotes}
+          deleteNote={deleteNote}
+          handleLikedNotes={handleLikedNotes}
+          startEditing={startEditing}
+        />
+      </ul>
+    </div>
+  );
+};
+
+export default NotesApp;
+
+
+
+
+
+
+
+
+          // MOVIES FETCHER
+
+import React, { useEffect, useState } from 'react'
+
+const MoviesFetcher = ({theme, toggleTheme}) => {
+    const [query, setQuery] = useState('')
+    const [movies, setMovies] = useState([])
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState();
+    
+
+
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            if (query.trim() !== '') {
+                fetchMovies();
+            }else{
+                setMovies([])
+                setError(null)
+            }
+        }, 500);
+        return () => clearTimeout(delay);
+        
+    }, [query]);
+
+    
+
+    const fetchMovies = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch(`https://www.omdbapi.com/?apikey=e99d6d86&s=${query}`)
+            const data = await response.json()
+            if (data.Response === "True") {
+                setMovies(data.Search)
+                setError(null)
+            }else {
+                setMovies([])
+                setError(data.Error)
+            }
+        } catch (error) {
+            setError("Something went wrong. Please try again later")
+            setMovies([])
+        }
+        setLoading(false)
+    }
+  return (
+    <div className='fetcher'>
+        <div className="input-box">
+            <input type="text" placeholder='Search Moviee.....' value={query} onChange={(e) => setQuery(e.target.value)} />
+            <button onClick={toggleTheme} className='theme-btn'>{theme === 'light' ? '☀️' : '🌙'} </button>
+        </div>
+        {loading && <div className='loader'></div>}
+        {error && <p className='error-msg'>{error}</p>}
+
+        <div className="movies-grid">
+            {movies.map((movie) => (
+                <div key={movie.imdbID} className='movie-card'>
+                    <img src={movie.Poster} alt={movie.Title} />
+                    <h3>{movie.Title}</h3>
+                    <p>{movie.Year}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+  )
+}
+
+export default MoviesFetcher
+
+
+
+
+
+
+
+10. Authentication + Protected Routes
+Idea: Create a login/signup UI, protect some pages/routes.
+
+Libraries: React Router, Firebase Auth
+
+Skills:
+
+React Router DOM
+
+Route guarding
+
+State management

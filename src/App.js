@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+// eslint-disable-next-line
+import MoviesApp from './components/Movie Fetcher/MoviesApp';
+// eslint-disable-next-line
+import NotesApp from './components/Notes App/NotesApp';
+// eslint-disable-next-line
+import TodoList from './components/TodoList';
+// eslint-disable-next-line
+import QuotesApp from './components/Quotes Generator/QuotesApp';
+import CartsApp from './components/Product Cart Fetcher/CartsApp';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div>
+    {/* <TodoList /> */}
+    {/* <NotesApp /> */}
+    {/* <MoviesApp/> */}
+    {/* <QuotesApp /> */}
+    <CartsApp />
+   </div>
   );
 }
 
