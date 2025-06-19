@@ -15,9 +15,9 @@ function App() {
    <div>
     {/* <TodoList /> */}
     {/* <NotesApp /> */}
-    <MoviesApp/>
+    {/* <MoviesApp/> */}
     {/* <QuotesApp /> */}
-    {/* <CartsApp /> */}
+    <CartsApp />
    </div>
   );
 }

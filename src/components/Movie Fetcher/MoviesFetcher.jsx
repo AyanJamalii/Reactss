@@ -83,7 +83,7 @@ const MoviesFetcher = ({theme, toggleTheme}) => {
     <div className='fetcher'>
       <div className="input-box">
         <input type="text" placeholder='Search Movie....' value={query} onChange={(e) => setQuery(e.target.value)} />
-        <button onClick={toggleTheme} className='theme-btn'>{theme === 'light' ? '☀️' : '🌙'}</button>
+        <button onClick={toggleTheme} className='theme-btn'>{theme === 'light' ? '🌙' : '☀️'}</button>
       </div>
       <div className="category-btns">
         <button className='cat-btn' onClick={() => setSelectedMovies('Trending')}>Trending</button>
