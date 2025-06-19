@@ -51,6 +51,7 @@ const CartsFetcher = () => {
                 <h4>{product.title}</h4>
                 <p>${product.price}</p>
                 <i>{product.description}</i>
+                <br />
                 <button onClick={() => addToCart(product)}>Add To Cart</button>
             </div>
         ))}
