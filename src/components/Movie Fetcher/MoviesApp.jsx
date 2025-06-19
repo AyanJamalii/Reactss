@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MoviesFetcher from './MoviesFetcher.jsx'
-import './movies.css'
+// import './movies.css'
 const MoviesApp = ({thme}) => {
   const [theme, setTheme] = useState('light')
 

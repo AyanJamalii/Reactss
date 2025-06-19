@@ -237,7 +237,7 @@ const CartsFetcher = () => {
 
     const fetchCarts = async () => {
         try {
-            const res = await fetch(' ')
+            const res = await fetch('https://fakestoreapi.com/products')
             const data = await res.json()
             setProcuts(data)
             setError(null)
